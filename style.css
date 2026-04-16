@@ -1,0 +1,512 @@
+/* ============================================================
+   TOUT VA BIEN — STYLES
+
+   FONTS: The design uses "QUARTZ" and "Teriyake".
+   To use custom fonts, place files in /fonts/ and
+   uncomment the @font-face blocks below.
+   Current fallbacks: Cormorant Garamond (QUARTZ), DM Sans (Teriyake).
+   ============================================================ */
+
+/*
+@font-face {
+  font-family: "QUARTZ";
+  src: url("fonts/QUARTZ.woff2") format("woff2"),
+       url("fonts/QUARTZ.woff")  format("woff");
+  font-weight: normal;
+  font-style:  normal;
+}
+
+@font-face {
+  font-family: "Teriyake";
+  src: url("fonts/Teriyake-Regular.woff2") format("woff2"),
+       url("fonts/Teriyake-Regular.woff")  format("woff");
+  font-weight: 400;
+  font-style:  normal;
+}
+
+@font-face {
+  font-family: "Teriyake";
+  src: url("fonts/Teriyake-Medium.woff2") format("woff2");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Teriyake";
+  src: url("fonts/Teriyake-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "Teriyake";
+  src: url("fonts/Teriyake-Bold.woff2") format("woff2");
+  font-weight: 700;
+}
+*/
+
+/* ── CUSTOM PROPERTIES ── */
+:root {
+  --bg:        #2b2b2b;
+  --text:      #fefffe;
+  --text-dark: #2b2b2b;
+  --nav-h:     70px;
+
+  /* Font families — swap "Cormorant Garamond" / "DM Sans" for
+     "QUARTZ" / "Teriyake" once font files are available */
+  --font-display: "QUARTZ", "Cormorant Garamond", Georgia, serif;
+  --font-body:    "Teriyake", "DM Sans", "Inter", sans-serif;
+
+  /* Panel widths */
+  --panel-hero:      100vw;
+  --panel-menu:      210vw;
+  --panel-specialty: 120vw;
+  --panel-about:     110vw;
+}
+
+/* ── RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+}
+
+ul { list-style: none; }
+a  { color: inherit; text-decoration: none; }
+img { display: block; }
+
+/* ── NAV ── */
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: var(--nav-h);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 40px 14px;
+  background: var(--bg);
+  /* subtle separation */
+  border-bottom: 1px solid rgba(254,255,254,0.08);
+}
+
+.nav-logo img {
+  height: 38px;
+  width: auto;
+  display: block;
+}
+
+.nav-links {
+  display: flex;
+  gap: 56px;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.nav-links li a {
+  opacity: 0.85;
+  transition: opacity 0.2s;
+  cursor: pointer;
+}
+.nav-links li a:hover { opacity: 1; }
+
+/* ── SCROLL CONTAINER ── */
+.scroll-container {
+  position: fixed;
+  top: var(--nav-h);
+  left: 0; right: 0; bottom: 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+.scroll-container::-webkit-scrollbar { display: none; }
+.scroll-container.dragging { cursor: grabbing; }
+
+/* ── CANVAS ── */
+.canvas {
+  display: flex;
+  height: 100%;
+  width: calc(var(--panel-hero) + var(--panel-menu) + var(--panel-specialty) + var(--panel-about));
+}
+
+/* ── PANELS (shared) ── */
+.panel {
+  position: relative;
+  height: 100%;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* ══════════════════════════════════
+   PANEL 1 — HERO
+══════════════════════════════════ */
+.panel--hero {
+  width: var(--panel-hero);
+  display: flex;
+  align-items: center;
+}
+
+.hero-text {
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  max-width: 680px;
+}
+
+.hero-heading {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(52px, 7vw, 82px);
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  white-space: pre-line;
+}
+
+.hero-whats-new {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+}
+
+.sub-head {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--text);
+}
+
+.body-text {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* Social icons — bottom-right of hero */
+.social-icons {
+  position: absolute;
+  bottom: 32px;
+  right: 40px;
+  display: flex;
+  gap: 8px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border: 1.2px solid rgba(254,255,254,0.7);
+  border-radius: 50%;
+  color: var(--text);
+  transition: border-color 0.2s, opacity 0.2s;
+}
+.social-btn:hover { border-color: var(--text); opacity: 0.8; }
+.social-btn svg { width: 22px; height: 22px; }
+
+/* ══════════════════════════════════
+   PANEL 2 — MENU
+══════════════════════════════════ */
+.panel--menu {
+  width: var(--panel-menu);
+  display: flex;
+  align-items: flex-start;
+  padding-top: 60px;
+}
+
+/* Large display word "Coffee" */
+.menu-large-word {
+  position: absolute;
+  top: 50%;
+  left: 44%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(120px, 16vw, 220px);
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+  color: var(--text);
+  pointer-events: none;
+  white-space: nowrap;
+  opacity: 0.9;
+}
+
+/* Menu columns layout */
+.menu-col {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: var(--text);
+  z-index: 2;
+}
+
+.menu-col--coffee { left: 40px;   width: 300px; }
+.menu-col--tea    { left: 380px;  width: 320px; }
+.menu-col--jpn    { left: 730px;  width: 320px; }
+.menu-col--drinks { left: 1080px; width: 380px; }
+
+.menu-heading {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--text);
+}
+
+.menu-list {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--text);
+}
+.menu-list li::before { content: "  — "; }
+
+.menu-subgroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.menu-label-bold {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--text);
+}
+
+/* Coffee pour image */
+.menu-coffee-image {
+  position: absolute;
+  bottom: 0;
+  left: 560px;
+  width: 380px;
+  height: 56%;
+  overflow: hidden;
+}
+.menu-coffee-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* ══════════════════════════════════
+   PANEL 3 — SPECIALTY & DRINKS
+══════════════════════════════════ */
+.panel--specialty {
+  width: var(--panel-specialty);
+  position: relative;
+}
+
+/* Coffee of the Day card */
+.specialty-card {
+  position: absolute;
+  left: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 260px;
+}
+
+.specialty-card__img {
+  width: 200px;
+  height: 280px;
+  object-fit: cover;
+}
+
+/* Bensa block */
+.bensa-block {
+  position: absolute;
+  left: 360px;
+  top: 50%;
+  transform: translateY(-50%) translateY(-120px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--text);
+}
+
+/* Iced drinks + Lemonades */
+.drinks-col {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: var(--text);
+}
+
+.drinks-col--lemonades { left: 490px; top: calc(50% - 170px); transform: none; width: 500px; }
+.drinks-col--iced      { left: 490px; top: calc(50% + 70px);  transform: none; width: 500px; }
+
+/* Café images */
+.cafe-image {
+  position: absolute;
+  overflow: hidden;
+}
+
+.cafe-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cafe-image--main {
+  right: 0;
+  top: 0;
+  width: 55%;
+  height: 100%;
+}
+
+.cafe-image--secondary {
+  left: 280px;
+  bottom: 0;
+  width: 180px;
+  height: 46%;
+}
+
+/* ══════════════════════════════════
+   PANEL 4 — ABOUT US
+══════════════════════════════════ */
+.panel--about {
+  width: var(--panel-about);
+  background: #e8e4de; /* light section */
+  position: relative;
+}
+
+/* Rotated "About us" text on left edge */
+.about-rotated-wrap {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 120px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.about-rotated-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(100px, 12vw, 160px);
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+  color: var(--text-dark);
+  white-space: nowrap;
+  transform: rotate(-90deg);
+  transform-origin: center center;
+}
+
+/* Images */
+.about-images {
+  position: absolute;
+  left: 140px;
+  top: 0;
+  width: calc(100% - 300px);
+  height: 62%;
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.about-img {
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.about-img--1 { width: 45%; height: 80%; }
+.about-img--2 { width: 30%; height: 100%; }
+.about-img--3 { width: 22%; height: 65%; }
+
+/* Body text */
+.about-body {
+  position: absolute;
+  left: 140px;
+  bottom: 60px;
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--text-dark);
+}
+.about-body .sub-head  { color: var(--text-dark); }
+.about-body .body-text { color: var(--text-dark); font-size: 18px; line-height: 2.4; }
+
+/* ── SPIN CIRCLE ── */
+.spin-circle {
+  position: fixed;
+  bottom: 28px;
+  left: 20px;
+  width: 80px;
+  height: 80px;
+  z-index: 50;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.spin-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+/* ── SCROLL PROGRESS DOT ── */
+.scroll-dots {
+  position: fixed;
+  bottom: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 50;
+}
+
+.scroll-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(254,255,254,0.35);
+  transition: background 0.3s, transform 0.3s;
+}
+.scroll-dot.active {
+  background: var(--text);
+  transform: scale(1.4);
+}
+
+/* ── SELECTION ── */
+::selection { background: rgba(254,255,254,0.2); }
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  .spin-circle { transition: none; }
+  * { transition-duration: 0.01ms !important; }
+}
