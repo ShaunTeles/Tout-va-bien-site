@@ -1,47 +1,79 @@
 /* ============================================================
    TOUT VA BIEN — STYLES
-
-   FONTS: The design uses "QUARTZ" and "Teriyake".
-   To use custom fonts, place files in /fonts/ and
-   uncomment the @font-face blocks below.
-   Current fallbacks: Cormorant Garamond (QUARTZ), DM Sans (Teriyake).
    ============================================================ */
 
-/*
+/* ── FONTS ── */
 @font-face {
   font-family: "QUARTZ";
-  src: url("fonts/QUARTZ.woff2") format("woff2"),
-       url("fonts/QUARTZ.woff")  format("woff");
+  src: url("fonts/QUARTZ.ttf") format("truetype");
   font-weight: normal;
   font-style:  normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Teriyake";
-  src: url("fonts/Teriyake-Regular.woff2") format("woff2"),
-       url("fonts/Teriyake-Regular.woff")  format("woff");
+  src: url("fonts/Teriyake-Thin.otf") format("opentype");
+  font-weight: 100;
+  font-style:  normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Teriyake";
+  src: url("fonts/Teriyake-ExtraLight.otf") format("opentype");
+  font-weight: 200;
+  font-style:  normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Teriyake";
+  src: url("fonts/Teriyake-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style:  normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Teriyake";
+  src: url("fonts/Teriyake-Regular.otf") format("opentype");
   font-weight: 400;
   font-style:  normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Teriyake";
-  src: url("fonts/Teriyake-Medium.woff2") format("woff2");
+  src: url("fonts/Teriyake-Medium.otf") format("opentype");
   font-weight: 500;
+  font-style:  normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Teriyake";
-  src: url("fonts/Teriyake-SemiBold.woff2") format("woff2");
+  src: url("fonts/Teriyake-SemiBold.otf") format("opentype");
   font-weight: 600;
+  font-style:  normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Teriyake";
-  src: url("fonts/Teriyake-Bold.woff2") format("woff2");
+  src: url("fonts/Teriyake-Bold.otf") format("opentype");
   font-weight: 700;
+  font-style:  normal;
+  font-display: swap;
 }
-*/
+
+@font-face {
+  font-family: "Teriyake";
+  src: url("fonts/Teriyake-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style:  normal;
+  font-display: swap;
+}
 
 /* ── CUSTOM PROPERTIES ── */
 :root {
@@ -50,10 +82,8 @@
   --text-dark: #2b2b2b;
   --nav-h:     70px;
 
-  /* Font families — swap "Cormorant Garamond" / "DM Sans" for
-     "QUARTZ" / "Teriyake" once font files are available */
-  --font-display: "QUARTZ", "Cormorant Garamond", Georgia, serif;
-  --font-body:    "Teriyake", "DM Sans", "Inter", sans-serif;
+  --font-display: "QUARTZ", Georgia, serif;
+  --font-body:    "Teriyake", sans-serif;
 
   /* Panel widths */
   --panel-hero:      100vw;
