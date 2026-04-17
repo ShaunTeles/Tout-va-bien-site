@@ -23,7 +23,7 @@ const CONTENT = {
 
   /* ── HERO PANEL ── */
   hero: {
-    heading: "Speciality coffee\n& tea room\nin Prague",
+    heading: "Speciality coffee &\ntea room in Prague",
     whatsNewTitle: "What's new",
     whatsNewBody:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna egestas cursus id purus sed. At morbi pulvinar condimentum varius amet, aliquam. Arcu nulla nec pellentesque sed tincidunt. Ligula lorem quis ridiculus pretium sed euismod egestas.",

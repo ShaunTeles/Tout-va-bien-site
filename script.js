@@ -143,11 +143,9 @@
   container.addEventListener("scroll", function () {
     const current = container.scrollLeft;
     const delta   = current - lastScrollL;
-    // CW on scroll right (+), CCW on scroll left (-)
     rotation  += delta * 0.15;
     lastScrollL = current;
     spinCircle.style.transform = `rotate(${rotation}deg)`;
-    updateDots();
   });
 
   /* ── NAV LINK SCROLL ── */
@@ -161,31 +159,6 @@
     container.scrollTo({ left: target.offsetLeft, behavior: "smooth" });
   });
 
-  /* ── SCROLL DOTS ── */
-  const panels = ["panel-hero", "panel-menu", "panel-specialty", "panel-about"];
-
-  // Build dots
-  const dotsWrap = document.createElement("div");
-  dotsWrap.className = "scroll-dots";
-  panels.forEach((id, i) => {
-    const dot = document.createElement("div");
-    dot.className = "scroll-dot" + (i === 0 ? " active" : "");
-    dot.dataset.panel = id;
-    dotsWrap.appendChild(dot);
-  });
-  document.body.appendChild(dotsWrap);
-
-  function updateDots() {
-    const mid = container.scrollLeft + container.clientWidth / 2;
-    let activeId = panels[0];
-    panels.forEach(id => {
-      const el = document.getElementById(id);
-      if (el && el.offsetLeft <= mid) activeId = id;
-    });
-    document.querySelectorAll(".scroll-dot").forEach(d => {
-      d.classList.toggle("active", d.dataset.panel === activeId);
-    });
-  }
 
   /* ── KEYBOARD NAVIGATION ── */
   document.addEventListener("keydown", function (e) {

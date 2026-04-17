@@ -106,19 +106,43 @@ ul { list-style: none; }
 a  { color: inherit; text-decoration: none; }
 img { display: block; }
 
-/* ── NAV ── */
-#nav {
+/* ── SITE WRAPPER — single fixed layer so blend mode works ── */
+#site-wrapper {
   position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* ── SCROLL CONTAINER ── */
+.scroll-container {
+  position: absolute;
+  inset: 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.scroll-container::-webkit-scrollbar { display: none; }
+.scroll-container.dragging { cursor: grabbing; }
+
+/* ── NAV (after main in DOM — paints on top naturally) ── */
+#nav {
+  position: absolute;
   top: 0; left: 0; right: 0;
-  z-index: 100;
   height: var(--nav-h);
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   padding: 0 40px 14px;
-  background: var(--bg);
-  /* subtle separation */
-  border-bottom: 1px solid rgba(254,255,254,0.08);
+  background: transparent;
+  pointer-events: none;
+}
+
+#nav a { pointer-events: all; }
+
+.nav-logo {
+  mix-blend-mode: difference;
 }
 
 .nav-logo img {
@@ -131,31 +155,17 @@ img { display: block; }
   display: flex;
   gap: 56px;
   font-family: var(--font-body);
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.02em;
+  color: #ffffff;
+  mix-blend-mode: difference;
 }
 
 .nav-links li a {
-  opacity: 0.85;
-  transition: opacity 0.2s;
   cursor: pointer;
 }
-.nav-links li a:hover { opacity: 1; }
-
-/* ── SCROLL CONTAINER ── */
-.scroll-container {
-  position: fixed;
-  top: var(--nav-h);
-  left: 0; right: 0; bottom: 0;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  cursor: grab;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
-}
-.scroll-container::-webkit-scrollbar { display: none; }
-.scroll-container.dragging { cursor: grabbing; }
+.nav-links li a:hover { opacity: 0.8; }
 
 /* ── CANVAS ── */
 .canvas {
@@ -184,21 +194,21 @@ img { display: block; }
 .hero-text {
   position: absolute;
   left: 40px;
-  top: 50%;
+  top: 58%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 48px;
-  max-width: 680px;
+  gap: 40px;
+  max-width: 65vw;
 }
 
 .hero-heading {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(52px, 7vw, 82px);
-  line-height: 1.12;
-  letter-spacing: -0.04em;
+  font-size: clamp(44px, 5vw, 68px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
   color: var(--text);
   white-space: pre-line;
 }
@@ -213,7 +223,7 @@ img { display: block; }
 .sub-head {
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: 22px;
+  font-size: 16px;
   line-height: 1;
   color: var(--text);
 }
@@ -221,7 +231,7 @@ img { display: block; }
 .body-text {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 16px;
+  font-size: 13px;
   line-height: 1.6;
   color: var(--text);
 }
@@ -297,7 +307,7 @@ img { display: block; }
 .menu-heading {
   font-family: var(--font-body);
   font-weight: 500;
-  font-size: 40px;
+  font-size: 28px;
   line-height: 1;
   color: var(--text);
 }
@@ -305,7 +315,7 @@ img { display: block; }
 .menu-list {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1.9;
   color: var(--text);
 }
@@ -320,7 +330,7 @@ img { display: block; }
 .menu-label-bold {
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1.9;
   color: var(--text);
 }
@@ -409,7 +419,7 @@ img { display: block; }
 .cafe-image--main {
   right: 0;
   top: 0;
-  width: 55%;
+  width: 65%;
   height: 100%;
 }
 
@@ -425,8 +435,27 @@ img { display: block; }
 ══════════════════════════════════ */
 .panel--about {
   width: var(--panel-about);
-  background: #e8e4de; /* light section */
+  background: #fefffe;
   position: relative;
+}
+
+/* Café image bleeds in from the left (mirrors panel 3's right edge) */
+.panel--about::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 38%;
+  height: 100%;
+  background: url('images/cafe-interior.png') center / cover no-repeat;
+  z-index: 0;
+}
+
+/* Ensure all about panel content sits above the bleed image */
+.about-rotated-wrap,
+.about-images,
+.about-body {
+  z-index: 1;
 }
 
 /* Rotated "About us" text on left edge */
@@ -461,10 +490,10 @@ img { display: block; }
   left: 140px;
   top: 0;
   width: calc(100% - 300px);
-  height: 62%;
+  height: 72%;
   display: flex;
-  gap: 16px;
-  align-items: flex-end;
+  gap: 20px;
+  align-items: flex-start;
 }
 
 .about-img {
@@ -472,27 +501,28 @@ img { display: block; }
   flex-shrink: 0;
 }
 
-.about-img--1 { width: 45%; height: 80%; }
-.about-img--2 { width: 30%; height: 100%; }
-.about-img--3 { width: 22%; height: 65%; }
+/* Order: Book-Fan → white-coffee (tall) → Cafe-Order-Desk */
+.about-img--1 { order: 3; width: 22%; height: 85%; }
+.about-img--2 { order: 2; width: 20%; height: 95%; }
+.about-img--3 { order: 1; width: 22%; height: 72%; }
 
 /* Body text */
 .about-body {
   position: absolute;
   left: 140px;
   bottom: 60px;
-  width: 480px;
+  width: 280px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   color: var(--text-dark);
 }
 .about-body .sub-head  { color: var(--text-dark); }
-.about-body .body-text { color: var(--text-dark); font-size: 18px; line-height: 2.4; }
+.about-body .body-text { color: var(--text-dark); font-size: 13px; line-height: 2.4; }
 
 /* ── SPIN CIRCLE ── */
 .spin-circle {
-  position: fixed;
+  position: absolute;
   bottom: 28px;
   left: 20px;
   width: 80px;
@@ -509,28 +539,6 @@ img { display: block; }
   border-radius: 50%;
 }
 
-/* ── SCROLL PROGRESS DOT ── */
-.scroll-dots {
-  position: fixed;
-  bottom: 44px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-  z-index: 50;
-}
-
-.scroll-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(254,255,254,0.35);
-  transition: background 0.3s, transform 0.3s;
-}
-.scroll-dot.active {
-  background: var(--text);
-  transform: scale(1.4);
-}
 
 /* ── SELECTION ── */
 ::selection { background: rgba(254,255,254,0.2); }
