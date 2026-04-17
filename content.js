@@ -13,7 +13,6 @@ const CONTENT = {
     logoSrc: "images/Logo.png",
     logoAlt: "Tout va bien",
     links: [
-      { label: "Coffee",   target: "panel-hero"     },
       { label: "Menu",     target: "panel-menu"     },
       { label: "About Us", target: "panel-about"    },
     ],
@@ -106,6 +105,7 @@ const CONTENT = {
 
     bensaName: "Bensa | Etiopie",
     bensaType: "Espresso",
+    bensaImageSrc: "images/white-coffee-of-the-day.png",
 
     icedDrinksHeading: "Iced Drinks",
     icedDrinks: [

@@ -68,6 +68,7 @@
     document.getElementById("cotdType").textContent = c.specialty.coffeeOfTheDayType;
     document.getElementById("bensaName").textContent = c.specialty.bensaName;
     document.getElementById("bensaType").textContent = c.specialty.bensaType;
+    setImg("bensaImage", c.specialty.bensaImageSrc, c.specialty.bensaName);
 
     document.getElementById("icedDrinksHeading").textContent  = c.specialty.icedDrinksHeading;
     document.getElementById("lemonadesHeading").textContent   = c.specialty.lemonadesHeading;
@@ -146,6 +147,13 @@
     rotation  += delta * 0.15;
     lastScrollL = current;
     spinCircle.style.transform = `rotate(${rotation}deg)`;
+  });
+
+  /* ── NAV LOGO SCROLL ── */
+  document.getElementById("navLogo").addEventListener("click", function (e) {
+    e.preventDefault();
+    const target = document.getElementById("panel-hero");
+    if (target) container.scrollTo({ left: target.offsetLeft, behavior: "smooth" });
   });
 
   /* ── NAV LINK SCROLL ── */

@@ -86,9 +86,9 @@
   --font-body:    "Teriyake", sans-serif;
 
   /* Panel widths */
-  --panel-hero:      100vw;
-  --panel-menu:      210vw;
-  --panel-specialty: 120vw;
+  --panel-hero:      80vw;
+  --panel-menu:      95vw;
+  --panel-specialty: 50vw;
   --panel-about:     110vw;
 }
 
@@ -194,7 +194,7 @@ img { display: block; }
 .hero-text {
   position: absolute;
   left: 40px;
-  top: 58%;
+  top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
@@ -243,7 +243,11 @@ img { display: block; }
   right: 40px;
   display: flex;
   gap: 8px;
+  pointer-events: none;
+  z-index: 10;
+  mix-blend-mode: difference;
 }
+.social-icons a { pointer-events: all; }
 
 .social-btn {
   display: flex;
@@ -272,9 +276,9 @@ img { display: block; }
 /* Large display word "Coffee" */
 .menu-large-word {
   position: absolute;
-  top: 50%;
-  left: 44%;
-  transform: translate(-50%, -50%);
+  top: 40px;
+  left: 144px;
+  transform: none;
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
@@ -285,13 +289,13 @@ img { display: block; }
   pointer-events: none;
   white-space: nowrap;
   opacity: 0.9;
+  z-index: 3;
 }
 
 /* Menu columns layout */
 .menu-col {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: calc(var(--nav-h) + 8px);
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -302,7 +306,7 @@ img { display: block; }
 .menu-col--coffee { left: 40px;   width: 300px; }
 .menu-col--tea    { left: 380px;  width: 320px; }
 .menu-col--jpn    { left: 730px;  width: 320px; }
-.menu-col--drinks { left: 1080px; width: 380px; }
+.menu-col--drinks { left: 380px; top: 585px; width: 320px; }
 
 .menu-heading {
   font-family: var(--font-body);
@@ -338,11 +342,11 @@ img { display: block; }
 /* Coffee pour image */
 .menu-coffee-image {
   position: absolute;
+  top: 410px;
   bottom: 0;
-  left: 560px;
+  left: 732px;
   width: 380px;
-  height: 56%;
-  overflow: hidden;
+  overflow: visible;
 }
 .menu-coffee-image img {
   width: 100%;
@@ -362,31 +366,49 @@ img { display: block; }
 /* Coffee of the Day card */
 .specialty-card {
   position: absolute;
-  left: 60px;
-  top: 50%;
-  transform: translateY(-50%);
+  left: 40px;
+  bottom: 60px;
+  top: auto;
+  transform: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  width: 260px;
+  gap: 8px;
+  width: 200px;
+  color: var(--text);
 }
 
 .specialty-card__img {
-  width: 200px;
-  height: 280px;
-  object-fit: cover;
+  width: 160px;
+  height: 210px;
+  object-fit: contain;
+  object-position: bottom center;
 }
 
 /* Bensa block */
 .bensa-block {
   position: absolute;
-  left: 360px;
-  top: 50%;
-  transform: translateY(-50%) translateY(-120px);
+  left: 270px;
+  top: auto;
+  bottom: 0;
+  transform: none;
   display: flex;
   flex-direction: column;
   gap: 8px;
   color: var(--text);
+  width: 420px;
+}
+
+.bensa-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bensa-img {
+  width: 100%;
+  height: 72vh;
+  object-fit: contain;
+  object-position: bottom center;
 }
 
 /* Iced drinks + Lemonades */
@@ -401,8 +423,8 @@ img { display: block; }
   color: var(--text);
 }
 
-.drinks-col--lemonades { left: 490px; top: calc(50% - 170px); transform: none; width: 500px; }
-.drinks-col--iced      { left: 490px; top: calc(50% + 70px);  transform: none; width: 500px; }
+.drinks-col--lemonades { left: 1080px; top: calc(var(--nav-h) + 8px); transform: none; width: 320px; }
+.drinks-col--iced      { left: 40px; top: 589px; transform: none; width: 300px; }
 
 /* Café images */
 .cafe-image {
@@ -443,10 +465,11 @@ img { display: block; }
 .panel--about::before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 140px;
+  bottom: 0;
+  top: auto;
   width: 38%;
-  height: 100%;
+  height: 70%;
   background: url('images/cafe-interior.png') center / cover no-repeat;
   z-index: 0;
 }
@@ -503,7 +526,7 @@ img { display: block; }
 
 /* Order: Book-Fan → white-coffee (tall) → Cafe-Order-Desk */
 .about-img--1 { order: 3; width: 22%; height: 85%; }
-.about-img--2 { order: 2; width: 20%; height: 95%; }
+.about-img--2 { display: none; }
 .about-img--3 { order: 1; width: 22%; height: 72%; }
 
 /* Body text */
@@ -524,7 +547,7 @@ img { display: block; }
 .spin-circle {
   position: absolute;
   bottom: 28px;
-  left: 20px;
+  left: 40px;
   width: 80px;
   height: 80px;
   z-index: 50;

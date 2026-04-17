@@ -30,28 +30,10 @@
           </div>
         </div>
 
-        <!-- Social icons — bottom right of hero panel -->
-        <div class="social-icons">
-          <a class="social-btn" id="instagramLink" href="https://www.instagram.com/cafe__toutvabien/" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-              <circle cx="12" cy="12" r="4"/>
-              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
-            </svg>
-          </a>
-          <a class="social-btn" id="facebookLink" href="https://www.facebook.com/cafeToutvabien" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-            </svg>
-          </a>
-        </div>
       </section>
 
       <!-- ── PANEL 2: MENU ── -->
       <section class="panel panel--menu" id="panel-menu">
-
-        <!-- Large "Coffee" display word -->
-        <div class="menu-large-word" id="menuLargeWord"></div>
 
         <!-- Coffee column -->
         <div class="menu-col menu-col--coffee">
@@ -88,29 +70,6 @@
           <ul class="menu-list" id="drinksList"></ul>
         </div>
 
-        <!-- Coffee pour image — bottom of panel -->
-        <div class="menu-coffee-image">
-          <img id="coffeeImage" src="" alt="" />
-        </div>
-
-      </section>
-
-      <!-- ── PANEL 3: SPECIALTY & DRINKS ── -->
-      <section class="panel panel--specialty" id="panel-specialty">
-
-        <!-- Coffee of the day card -->
-        <div class="specialty-card">
-          <img class="specialty-card__img" id="cotdImage" src="" alt="" />
-          <p class="sub-head" id="cotdName"></p>
-          <p class="body-text" id="cotdType"></p>
-        </div>
-
-        <!-- Bensa block -->
-        <div class="bensa-block">
-          <p class="sub-head" id="bensaName"></p>
-          <p class="body-text" id="bensaType"></p>
-        </div>
-
         <!-- Iced drinks column -->
         <div class="drinks-col drinks-col--iced">
           <h2 class="menu-heading" id="icedDrinksHeading"></h2>
@@ -123,12 +82,31 @@
           <ul class="menu-list" id="lemonadesList"></ul>
         </div>
 
-        <!-- Café images -->
-        <div class="cafe-image cafe-image--main">
-          <img id="cafeImage" src="" alt="" />
+        <!-- Coffee pour image — bottom of panel -->
+        <div class="menu-coffee-image">
+          <img id="coffeeImage" src="" alt="" />
+          <div class="menu-large-word" id="menuLargeWord"></div>
         </div>
-        <div class="cafe-image cafe-image--secondary">
-          <img id="cafeImage2" src="" alt="" />
+
+      </section>
+
+      <!-- ── PANEL 3: SPECIALTY & DRINKS ── -->
+      <section class="panel panel--specialty" id="panel-specialty">
+
+        <!-- Coffee of the day card -->
+        <div class="specialty-card">
+          <p class="sub-head" id="cotdName"></p>
+          <p class="body-text" id="cotdType"></p>
+          <img class="specialty-card__img" id="cotdImage" src="" alt="" />
+        </div>
+
+        <!-- Bensa block -->
+        <div class="bensa-block">
+          <div class="bensa-text">
+            <p class="sub-head" id="bensaName"></p>
+            <p class="body-text" id="bensaType"></p>
+          </div>
+          <img class="bensa-img" id="bensaImage" src="" alt="" />
         </div>
 
       </section>
@@ -163,11 +141,29 @@
        STICKY NAV (after main so it paints on top)
   ═══════════════════════════════════════════ -->
   <nav id="nav">
-    <a href="#" class="nav-logo" id="navLogo" aria-label="Tout va bien home">
+    <a href="#" class="nav-logo" id="navLogo" data-target="panel-hero" aria-label="Tout va bien home">
       <img id="logoImg" src="" alt="" />
     </a>
     <ul class="nav-links" id="navLinks"></ul>
   </nav>
+
+  <!-- ═══════════════════════════════════════════
+       SOCIAL ICONS (fixed, bottom-left)
+  ═══════════════════════════════════════════ -->
+  <div class="social-icons">
+    <a class="social-btn" id="instagramLink" href="https://www.instagram.com/cafe__toutvabien/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+    <a class="social-btn" id="facebookLink" href="https://www.facebook.com/cafeToutvabien" target="_blank" rel="noopener" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+      </svg>
+    </a>
+  </div>
 
   <!-- ═══════════════════════════════════════════
        SPIN CIRCLE (fixed, bottom-left)
