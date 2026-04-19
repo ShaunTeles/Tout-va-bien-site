@@ -89,7 +89,7 @@
   --panel-hero:      80vw;
   --panel-menu:      95vw;
   --panel-specialty: 50vw;
-  --panel-about:     140vw;
+  --panel-about:     calc(140vw + 600px);
 }
 
 /* ── RESET & BASE ── */
@@ -506,15 +506,25 @@ img { display: block; }
 /* Cafe interior — right column, same position as before */
 .about-img--1 {
   position: absolute;
-  left: 700px;
-  top: 190px;
+  left: 600px;
+  top: 290px;
   width: auto;
   height: calc(100% - 200px);
   object-fit: contain;
   object-position: left center;
 }
 
-.about-img--2 { display: none; }
+/* Cafe detail — to the right of cafe interior */
+.about-img--2 {
+  display: block;
+  position: absolute;
+  left: 1900px;
+  top: 100px;
+  width: auto;
+  height: calc(100% - 200px);
+  object-fit: contain;
+  object-position: left center;
+}
 
 /* Book-Fan — landscape, full image visible */
 .about-img--3 {
@@ -539,7 +549,7 @@ img { display: block; }
   z-index: 2;
 }
 .about-body .sub-head  { color: var(--text-dark); }
-.about-body .body-text { color: var(--text-dark); font-size: 13px; line-height: 2.4; }
+.about-body .body-text { color: var(--text-dark); font-size: 13px; line-height: 2.4; white-space: pre-line; }
 
 /* ── SPIN CIRCLE ── */
 .spin-circle {

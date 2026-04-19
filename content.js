@@ -23,9 +23,9 @@ const CONTENT = {
   /* ── HERO PANEL ── */
   hero: {
     heading: "Speciality coffee &\ntea room in Prague",
-    whatsNewTitle: "What's new",
+    whatsNewTitle: "Who we are",
     whatsNewBody:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna egestas cursus id purus sed. At morbi pulvinar condimentum varius amet, aliquam. Arcu nulla nec pellentesque sed tincidunt. Ligula lorem quis ridiculus pretium sed euismod egestas.",
+      "Café Tout va bien is a cozy neighborhood café in Prague's Vinohrady, offering a warm, dog-friendly space for quality coffee, homemade treats, and easygoing everyday moments.",
   },
 
   /* ── MENU PANEL ── */
@@ -133,14 +133,14 @@ const CONTENT = {
   /* ── ABOUT PANEL ── */
   about: {
     heading: "About us",
-    whatsNewTitle: "What's new",
+    whatsNewTitle: "Visit us",
     whatsNewBody:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna egestas cursus id purus sed.",
+      "Café Tout va bien is a cozy neighborhood café in Prague's Vinohrady, offering a warm, dog-friendly space for quality coffee, homemade treats, and easygoing everyday moments.",
 
     image1Src: "images/1-Cafe-interior.png",
     image1Alt: "Café interior",
-    image2Src: "images/white-coffee-of-the-day.png",
-    image2Alt: "Coffee of the day",
+    image2Src: "images/cafe-detail.png",
+    image2Alt: "Café detail",
     image3Src: "images/Book-Fan.png",
     image3Alt: "Reading at the café",
   },
