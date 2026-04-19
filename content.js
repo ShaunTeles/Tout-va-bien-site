@@ -137,8 +137,8 @@ const CONTENT = {
     whatsNewBody:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna egestas cursus id purus sed.",
 
-    image1Src: "images/Cafe-Order-Desk.png",
-    image1Alt: "Café order desk",
+    image1Src: "images/1-Cafe-interior.png",
+    image1Alt: "Café interior",
     image2Src: "images/white-coffee-of-the-day.png",
     image2Alt: "Coffee of the day",
     image3Src: "images/Book-Fan.png",
