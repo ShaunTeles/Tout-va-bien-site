@@ -51,7 +51,7 @@ export interface CafeContent {
   };
 
   specialty: {
-    coffeeOfTheDayImage: string;
+    coffeeOfTheDayImageSrc: string;
     coffeeOfTheDayName: string;
     coffeeOfTheDayType: string;
 
@@ -175,7 +175,7 @@ const content: CafeContent = {
       "Kashmiri Chai Latte",
     ],
 
-    largeCoffeeWord: "Coffee",
+    largeCoffeeWord: "Coffee", // decorative large background text on the menu panel
 
     coffeeImageSrc: "/images/coffee-pour.png",
     coffeeImageAlt: "Coffee pour",
@@ -183,7 +183,7 @@ const content: CafeContent = {
 
   /* ── SPECIALTY & DRINKS PANEL ── */
   specialty: {
-    coffeeOfTheDayImage: "/images/coffee-of-the-day.png",
+    coffeeOfTheDayImageSrc: "/images/coffee-of-the-day.png",
     coffeeOfTheDayName: "Chelbesa Dhilgee | Etiopie",
     coffeeOfTheDayType: "Filtr",
 
@@ -223,7 +223,7 @@ const content: CafeContent = {
 
     image1Src: "/images/1-Cafe-interior.png",
     image1Alt: "Café interior",
-    image2Src: "/images/cafe-detail.png",
+    image2Src: "/images/cafe-detail.png", // same as specialty.cafeImage2Src — replace with a distinct photo if available
     image2Alt: "Café detail",
     image3Src: "/images/Book-Fan.png",
     image3Alt: "Reading at the café",
