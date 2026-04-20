@@ -433,6 +433,8 @@ img { display: block; }
   object-position: bottom center;
 }
 
+/* drinks-col: used for iced drinks + lemonades columns; named differently from .menu-col
+   because these columns are positioned at different vertical offsets within the menu panel */
 /* Iced drinks + Lemonades */
 .drinks-col {
   position: absolute;
