@@ -9,7 +9,7 @@ import { z } from 'zod'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { TimePicker } from '@mui/x-date-pickers/TimePicker'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import type { Dayjs } from 'dayjs'
+import dayjs, { type Dayjs } from 'dayjs'
 
 const schema = z.object({
   name: z.string().min(2, 'Please enter your name'),
@@ -36,7 +36,7 @@ const timePickerSx = {
     borderWidth: '1px',
   },
   '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
-    borderColor: 'rgba(254,255,254,1)',
+    borderColor: '#fefffe',
     borderWidth: '1px',
   },
   '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
@@ -44,7 +44,7 @@ const timePickerSx = {
     borderWidth: '1px',
   },
   '& .MuiInputLabel-root': {
-    color: 'rgba(254,255,254,0.5)',
+    color: '#fefffe',
     fontFamily: 'var(--font-body)',
     fontSize: '12px',
     fontWeight: 600,
@@ -149,6 +149,9 @@ export default function BookPage() {
                     label="Arrival"
                     value={field.value as Dayjs | null}
                     onChange={field.onChange}
+                    ampm={false}
+                    minTime={dayjs().hour(8).minute(30)}
+                    maxTime={dayjs().hour(17).minute(30)}
                     sx={timePickerSx}
                     slotProps={{ popper: { sx: popperSx } }}
                   />
@@ -163,6 +166,9 @@ export default function BookPage() {
                     label="Departure"
                     value={field.value as Dayjs | null}
                     onChange={field.onChange}
+                    ampm={false}
+                    minTime={dayjs().hour(8).minute(30)}
+                    maxTime={dayjs().hour(17).minute(30)}
                     sx={timePickerSx}
                     slotProps={{ popper: { sx: popperSx } }}
                   />
