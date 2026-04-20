@@ -30,9 +30,18 @@ const timePickerSx = {
     fontFamily: 'var(--font-body)',
     fontSize: '15px',
     backgroundColor: 'transparent',
-    '& fieldset': { borderColor: 'rgba(254,255,254,0.3)', borderWidth: '1px' },
-    '&:hover fieldset': { borderColor: 'rgba(254,255,254,1) !important', borderWidth: '1px !important' },
-    '&.Mui-focused fieldset': { borderColor: '#fefffe', borderWidth: '1px !important' },
+  },
+  '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
+    borderColor: 'rgba(254,255,254,0.3)',
+    borderWidth: '1px',
+  },
+  '& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+    borderColor: 'rgba(254,255,254,1)',
+    borderWidth: '1px',
+  },
+  '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+    borderColor: '#fefffe',
+    borderWidth: '1px',
   },
   '& .MuiInputLabel-root': {
     color: 'rgba(254,255,254,0.5)',
