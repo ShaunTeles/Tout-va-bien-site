@@ -92,6 +92,49 @@
   --panel-about:     calc(140vw + 600px);
 }
 
+/* ── SKIP LINK ── */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 9999;
+  padding: 8px 16px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  border: 1.5px solid var(--text);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+.skip-link:focus {
+  top: 16px;
+}
+
+/* ── FOCUS STYLES (WCAG 2.2 AA) ── */
+:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* For elements on the white About panel */
+.panel--about :focus-visible {
+  outline-color: var(--text-dark);
+}
+
+/* Nav links on focus */
+.nav-links li a:focus-visible {
+  opacity: 1;
+}
+
+/* Social buttons on focus */
+.social-btn:focus-visible {
+  border-color: var(--text);
+  opacity: 1;
+}
+
 /* ── RESET & BASE ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -759,5 +802,5 @@ img { display: block; }
 /* ── REDUCED MOTION ── */
 @media (prefers-reduced-motion: reduce) {
   .spin-circle { transition: none; }
-  * { transition-duration: 0.01ms !important; }
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }

@@ -59,6 +59,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <a href="#scrollContainer" className="skip-link">Skip to content</a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

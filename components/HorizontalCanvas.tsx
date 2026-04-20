@@ -32,7 +32,8 @@ export function HorizontalCanvas({ children }: HorizontalCanvasProps) {
     if (!container) return
     const target = document.getElementById(id)
     if (!target) return
-    container.scrollTo({ left: target.offsetLeft, behavior: 'smooth' })
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    container.scrollTo({ left: target.offsetLeft, behavior: prefersReduced ? 'auto' : 'smooth' })
   }, [])
 
   useEffect(() => {
@@ -70,13 +71,16 @@ export function HorizontalCanvas({ children }: HorizontalCanvasProps) {
 
     /* ── Arrow key navigation ── */
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return
+      // Only handle arrow keys when the container (or a child) is focused
+      if (!container.contains(document.activeElement)) return
+      e.preventDefault()
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       const step = container.clientWidth * 0.8
       if (e.key === 'ArrowRight') {
-        e.preventDefault()
-        container.scrollBy({ left: step, behavior: 'smooth' })
-      } else if (e.key === 'ArrowLeft') {
-        e.preventDefault()
-        container.scrollBy({ left: -step, behavior: 'smooth' })
+        container.scrollBy({ left: step, behavior: prefersReduced ? 'auto' : 'smooth' })
+      } else {
+        container.scrollBy({ left: -step, behavior: prefersReduced ? 'auto' : 'smooth' })
       }
     }
 
@@ -102,6 +106,7 @@ export function HorizontalCanvas({ children }: HorizontalCanvasProps) {
       window.removeEventListener('mouseup', handleMouseUp)
       document.removeEventListener('keydown', handleKeyDown)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -109,6 +114,8 @@ export function HorizontalCanvas({ children }: HorizontalCanvasProps) {
       <main
         className="scroll-container"
         id="scrollContainer"
+        tabIndex={0}
+        aria-label="Café Tout va bien — scroll to explore"
         ref={containerRef}
       >
         <div className="canvas">{children}</div>
