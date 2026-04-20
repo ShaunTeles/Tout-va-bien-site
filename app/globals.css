@@ -887,30 +887,6 @@ img { display: block; }
 
 .book-select option { background: var(--bg); color: var(--text); }
 
-.book-duration-options {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  padding: 4px 0;
-}
-
-.book-duration-btn {
-  padding: 9px 18px;
-  border: 1px solid rgba(254, 255, 254, 0.3);
-  background: transparent;
-  color: var(--text);
-  font-family: var(--font-body);
-  font-size: 13px;
-  letter-spacing: 0.03em;
-  cursor: pointer;
-  transition: border-color 0.2s, background 0.2s, color 0.2s;
-}
-.book-duration-btn:hover { border-color: rgba(254, 255, 254, 0.7); }
-.book-duration-btn[aria-pressed="true"] {
-  border-color: var(--text);
-  background: var(--text);
-  color: var(--text-dark);
-}
 
 .book-textarea {
   resize: vertical;
