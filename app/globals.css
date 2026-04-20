@@ -342,8 +342,8 @@ img { display: block; }
 /* Large display word "Coffee" */
 .menu-large-word {
   position: absolute;
-  top: 40px;
-  left: 40px;
+  top: 350px;
+  left: 860px;
   transform: none;
   font-family: var(--font-display);
   font-style: italic;
@@ -827,6 +827,7 @@ img { display: block; }
 .book-heading {
   font-family: var(--font-display);
   font-style: italic;
+  font-weight: 400;
   font-size: clamp(40px, 6vw, 72px);
   line-height: 1;
   letter-spacing: -0.02em;
@@ -885,6 +886,31 @@ img { display: block; }
 }
 
 .book-select option { background: var(--bg); color: var(--text); }
+
+.book-duration-options {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 4px 0;
+}
+
+.book-duration-btn {
+  padding: 9px 18px;
+  border: 1px solid rgba(254, 255, 254, 0.3);
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+.book-duration-btn:hover { border-color: rgba(254, 255, 254, 0.7); }
+.book-duration-btn[aria-pressed="true"] {
+  border-color: var(--text);
+  background: var(--text);
+  color: var(--text-dark);
+}
 
 .book-textarea {
   resize: vertical;

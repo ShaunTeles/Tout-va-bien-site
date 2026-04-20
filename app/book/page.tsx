@@ -7,10 +7,13 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
+const DURATIONS = ['1 hour', '1.5 hours', '2 hours', 'Flexible']
+
 const schema = z.object({
   name: z.string().min(2, 'Please enter your name'),
   date: z.string().min(1, 'Please choose a date'),
-  time: z.string().min(1, 'Please choose a time'),
+  time: z.string().min(1, 'Please choose an arrival time'),
+  duration: z.string().min(1, 'Please choose a duration'),
   partySize: z.coerce.number().min(1, 'At least 1 guest').max(20, 'Maximum 20 guests'),
   notes: z.string().optional(),
 })
@@ -39,10 +42,14 @@ export default function BookPage() {
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors },
   } = useForm<BookingForm, unknown, BookingForm>({
     resolver: zodResolver(schema),
   })
+
+  const selectedDuration = watch('duration')
 
   const onSubmit = async () => {
     setPending(true)
@@ -93,9 +100,9 @@ export default function BookPage() {
           )}
         </div>
 
-        {/* Time */}
+        {/* Arrival time */}
         <div className="book-field">
-          <label htmlFor="time" className="book-label">Time</label>
+          <label htmlFor="time" className="book-label">Arrival time</label>
           <select id="time" className="book-select" {...register('time')}>
             <option value="">Select a time</option>
             {TIME_SLOTS.map((slot) => (
@@ -104,6 +111,28 @@ export default function BookPage() {
           </select>
           {errors.time && (
             <span className="book-error" role="alert">{errors.time.message}</span>
+          )}
+        </div>
+
+        {/* Duration */}
+        <div className="book-field">
+          <span className="book-label">How long will you stay?</span>
+          <input type="hidden" {...register('duration')} />
+          <div className="book-duration-options" role="group" aria-label="Duration">
+            {DURATIONS.map((d) => (
+              <button
+                key={d}
+                type="button"
+                className="book-duration-btn"
+                aria-pressed={selectedDuration === d}
+                onClick={() => setValue('duration', d, { shouldValidate: true })}
+              >
+                {d}
+              </button>
+            ))}
+          </div>
+          {errors.duration && (
+            <span className="book-error" role="alert">{errors.duration.message}</span>
           )}
         </div>
 
