@@ -1,6 +1,7 @@
 // Note: iced drinks and lemonades columns are visually part of this panel
 // but their data comes from the specialty section of content — see drinks-col CSS.
 
+import Image from 'next/image'
 import { CafeContent } from '@/lib/content'
 
 interface MenuPanelProps {
@@ -89,8 +90,7 @@ export function MenuPanel({ menu, specialty }: MenuPanelProps) {
 
       {/* Coffee pour image — bottom of panel */}
       <div className="menu-coffee-image">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={menu.coffeeImageSrc} alt={menu.coffeeImageAlt} />
+        <Image src={menu.coffeeImageSrc} alt={menu.coffeeImageAlt} fill style={{ objectFit: 'cover', objectPosition: 'center top' }} sizes="380px" />
         <div className="menu-large-word">{menu.largeCoffeeWord}</div>
       </div>
 

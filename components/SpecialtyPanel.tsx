@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { CafeContent } from '@/lib/content'
 
 interface SpecialtyPanelProps {
@@ -12,11 +13,12 @@ export function SpecialtyPanel({ specialty }: SpecialtyPanelProps) {
       <div className="specialty-card">
         <p className="sub-head">{specialty.coffeeOfTheDayName}</p>
         <p className="body-text">{specialty.coffeeOfTheDayType}</p>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           className="specialty-card__img"
           src={specialty.coffeeOfTheDayImageSrc}
           alt={specialty.coffeeOfTheDayName}
+          width={160}
+          height={210}
         />
       </div>
 
@@ -26,11 +28,13 @@ export function SpecialtyPanel({ specialty }: SpecialtyPanelProps) {
           <p className="sub-head">{specialty.bensaName}</p>
           <p className="body-text">{specialty.bensaType}</p>
         </div>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           className="bensa-img"
           src={specialty.bensaImageSrc}
           alt={specialty.bensaName}
+          width={600}
+          height={900}
+          style={{ width: '100%', height: '72vh', objectFit: 'contain', objectPosition: 'bottom center' }}
         />
       </div>
 

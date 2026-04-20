@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useScrollContext } from './HorizontalCanvas'
 import type { NavLink } from '@/lib/content'
 
@@ -31,8 +32,7 @@ export default function Nav({ logoSrc, logoAlt, links }: NavProps) {
         aria-label="Tout va bien home"
         onClick={handleLogoClick}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logoSrc} alt={logoAlt} id="logoImg" />
+        <Image src={logoSrc} alt={logoAlt} id="logoImg" width={160} height={38} style={{ height: '38px', width: 'auto' }} />
       </a>
       <ul className="nav-links" id="navLinks">
         {links.map((link) => (

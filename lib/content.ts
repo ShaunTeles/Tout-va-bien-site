@@ -177,19 +177,19 @@ const content: CafeContent = {
 
     largeCoffeeWord: "Coffee", // decorative large background text on the menu panel
 
-    coffeeImageSrc: "/images/coffee-pour.png",
+    coffeeImageSrc: "/images/coffee-pour.webp",
     coffeeImageAlt: "Coffee pour",
   },
 
   /* ── SPECIALTY & DRINKS PANEL ── */
   specialty: {
-    coffeeOfTheDayImageSrc: "/images/coffee-of-the-day.png",
+    coffeeOfTheDayImageSrc: "/images/coffee-of-the-day.png", // small (55KB) — no WebP needed
     coffeeOfTheDayName: "Chelbesa Dhilgee | Etiopie",
     coffeeOfTheDayType: "Filtr",
 
     bensaName: "Bensa | Etiopie",
     bensaType: "Espresso",
-    bensaImageSrc: "/images/white-coffee-of-the-day.png",
+    bensaImageSrc: "/images/white-coffee-of-the-day.webp",
 
     icedDrinksHeading: "Iced Drinks",
     icedDrinks: [
@@ -208,9 +208,9 @@ const content: CafeContent = {
       "Korejská Švestková Limonáda (Korean plum lemonade)",
     ],
 
-    cafeImageSrc:  "/images/cafe-interior.png",
+    cafeImageSrc:  "/images/1-Cafe-interior.webp",
     cafeImageAlt:  "Café interior",
-    cafeImage2Src: "/images/cafe-detail.png",
+    cafeImage2Src: "/images/cafe-detail.webp",
     cafeImage2Alt: "Café detail",
   },
 
@@ -221,11 +221,11 @@ const content: CafeContent = {
     whatsNewBody:
       "Café Tout va bien is a cozy neighborhood café in Prague's Vinohrady, offering a warm, dog-friendly space for quality coffee, homemade treats, and easygoing everyday moments.",
 
-    image1Src: "/images/1-Cafe-interior.png",
+    image1Src: "/images/1-Cafe-interior.webp",
     image1Alt: "Café interior",
-    image2Src: "/images/cafe-detail.png", // same as specialty.cafeImage2Src — replace with a distinct photo if available
+    image2Src: "/images/cafe-detail.webp", // same as specialty.cafeImage2Src — replace with a distinct photo if available
     image2Alt: "Café detail",
-    image3Src: "/images/Book-Fan.png",
+    image3Src: "/images/Book-Fan.webp",
     image3Alt: "Reading at the café",
   },
 
