@@ -45,6 +45,10 @@ const timePickerSx = {
   '& .MuiInputLabel-root.Mui-focused': { color: '#fefffe' },
   '& .MuiSvgIcon-root': { color: 'rgba(254,255,254,0.5)' },
   '& .MuiInputBase-input': { color: '#fefffe' },
+  '& .MuiPickersSectionList-root': { color: '#fefffe' },
+  '& .MuiPickersSectionList-section': { color: '#fefffe' },
+  '& .MuiPickersSectionList-sectionContent': { color: '#fefffe' },
+  '& .MuiPickersSectionList-sectionSeparator': { color: 'rgba(254,255,254,0.5)' },
 }
 
 const popperSx = {
