@@ -871,6 +871,11 @@ img { display: block; }
   outline: none;
   transition: border-color 0.2s;
 }
+.book-input:hover,
+.book-select:hover,
+.book-textarea:hover {
+  border-bottom-color: rgba(254, 255, 254, 1);
+}
 .book-input:focus,
 .book-select:focus,
 .book-textarea:focus {
