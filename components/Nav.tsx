@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useScrollContext } from './HorizontalCanvas'
 import type { NavLink } from '@/lib/content'
 
@@ -46,6 +47,9 @@ export default function Nav({ logoSrc, logoAlt, links }: NavProps) {
             </a>
           </li>
         ))}
+        <li>
+          <Link href="/book">Book</Link>
+        </li>
       </ul>
     </nav>
   )
