@@ -18,26 +18,32 @@ export function SpinCircle({ imageSrc, imageAlt }: SpinCircleProps) {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced) return
 
-    const container = ctx?.containerRef?.current
-    if (!container) return
+    const isMobile = window.matchMedia('(max-width: 767px)').matches
+    const scrollTarget = isMobile
+      ? (document.getElementById('site-wrapper') ?? ctx?.containerRef?.current)
+      : ctx?.containerRef?.current
+
+    if (!scrollTarget) return
 
     let rotation = 0
-    let lastScrollL = 0
+    let lastScroll = 0
 
     const handleScroll = () => {
-      const current = container.scrollLeft
-      const delta = current - lastScrollL
+      const current = isMobile
+        ? (document.getElementById('site-wrapper')?.scrollTop ?? 0)
+        : (ctx?.containerRef?.current?.scrollLeft ?? 0)
+      const delta = current - lastScroll
       rotation += delta * 0.15
-      lastScrollL = current
+      lastScroll = current
       if (circleRef.current) {
         circleRef.current.style.transform = `rotate(${rotation}deg)`
       }
     }
 
-    container.addEventListener('scroll', handleScroll, { passive: true })
+    scrollTarget.addEventListener('scroll', handleScroll, { passive: true })
 
     return () => {
-      container.removeEventListener('scroll', handleScroll)
+      scrollTarget.removeEventListener('scroll', handleScroll)
     }
   }, [ctx])
 

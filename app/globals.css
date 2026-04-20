@@ -575,6 +575,189 @@ img { display: block; }
 .about-body .sub-head  { color: var(--text-dark); }
 .about-body .body-text { color: var(--text-dark); font-size: 13px; line-height: 2.4; white-space: pre-line; }
 
+/* ══════════════════════════════════
+   MOBILE LAYOUT (<768px)
+   Panels stack vertically. Horizontal scroll disabled.
+══════════════════════════════════ */
+@media (max-width: 767px) {
+
+  /* Allow vertical scrolling on mobile */
+  html, body {
+    overflow: hidden; /* keep — site-wrapper handles it */
+  }
+
+  #site-wrapper {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  /* Disable horizontal scroll — stack panels vertically */
+  .scroll-container {
+    overflow-x: hidden;
+    overflow-y: visible;
+    cursor: default;
+    display: block;
+    height: auto;
+    position: relative;
+  }
+
+  .canvas {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+
+  /* All panels: full width, auto height, no overflow clip */
+  .panel {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100dvh;
+    overflow: visible;
+    position: relative;
+  }
+
+  /* ── HERO PANEL ── */
+  .hero-text {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    padding: 100px 24px 60px;
+    max-width: 100%;
+  }
+
+  .hero-heading {
+    font-size: clamp(36px, 9vw, 56px);
+  }
+
+  /* ── MENU PANEL ── */
+  .panel--menu {
+    padding: 80px 24px 60px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  /* Reset all absolutely-positioned menu columns */
+  .menu-col,
+  .drinks-col {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 100% !important;
+  }
+
+  /* Hide the large decorative background word on mobile */
+  .menu-large-word {
+    display: none;
+  }
+
+  /* Hide the coffee pour image on mobile */
+  .menu-coffee-image {
+    display: none;
+  }
+
+  /* ── SPECIALTY PANEL ── */
+  .panel--specialty {
+    padding: 60px 24px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: flex-start;
+    min-height: auto;
+  }
+
+  .specialty-card {
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 100%;
+  }
+
+  .bensa-block {
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 100%;
+  }
+
+  .bensa-img {
+    height: auto !important;
+    max-height: 60vw;
+    width: 100% !important;
+  }
+
+  /* ── ABOUT PANEL ── */
+  .panel--about {
+    padding: 60px 24px 80px;
+    min-height: auto;
+  }
+
+  .about-rotated-wrap {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    margin-bottom: 32px;
+  }
+
+  .about-rotated-text {
+    font-size: clamp(48px, 14vw, 80px);
+    transform: none;
+    white-space: normal;
+  }
+
+  .about-images {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .about-img {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 70vw;
+    object-fit: cover;
+  }
+
+  .about-body {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+  }
+
+  /* ── NAV ── */
+  #nav {
+    padding: 0 24px 14px;
+  }
+
+  /* ── SOCIAL ICONS ── */
+  .social-icons {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+  }
+
+  /* ── SPIN CIRCLE ── */
+  .spin-circle {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+  }
+
+}
+
 /* ── SELECTION ── */
 ::selection { background: rgba(254,255,254,0.2); }
 
