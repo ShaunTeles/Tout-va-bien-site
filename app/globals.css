@@ -1,0 +1,976 @@
+/* ============================================================
+   TOUT VA BIEN — GLOBAL STYLES
+   ============================================================ */
+
+/* ── FONTS ── */
+@font-face {
+  font-family: "QUARTZ";
+  src: url("/fonts/QUARTZ.ttf") format("truetype");
+  font-weight: normal;
+  font-style:  normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Teriyake";
+  src: url("/fonts/Teriyake-Thin.otf") format("opentype");
+  font-weight: 100;
+  font-style:  normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Teriyake";
+  src: url("/fonts/Teriyake-ExtraLight.otf") format("opentype");
+  font-weight: 200;
+  font-style:  normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Teriyake";
+  src: url("/fonts/Teriyake-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style:  normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Teriyake";
+  src: url("/fonts/Teriyake-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style:  normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Teriyake";
+  src: url("/fonts/Teriyake-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style:  normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Teriyake";
+  src: url("/fonts/Teriyake-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style:  normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Teriyake";
+  src: url("/fonts/Teriyake-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style:  normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Teriyake";
+  src: url("/fonts/Teriyake-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style:  normal;
+  font-display: swap;
+}
+
+/* ── CUSTOM PROPERTIES ── */
+:root {
+  --bg:        #2b2b2b;
+  --text:      #fefffe;
+  --text-dark: #2b2b2b;
+  --nav-h:     70px;
+
+  --font-display: "QUARTZ", Georgia, serif;
+  --font-body:    "Teriyake", sans-serif;
+
+  /* Panel widths */
+  --panel-hero:      80vw;
+  --panel-menu:      95vw;
+  --panel-specialty: 50vw;
+  --panel-about:     calc(140vw + 600px);
+}
+
+/* ── SKIP LINK ── */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 9999;
+  padding: 8px 16px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  border: 1.5px solid var(--text);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+.skip-link:focus-visible {
+  top: 16px;
+}
+
+/* ── FOCUS STYLES (WCAG 2.2 AA) ── */
+:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* For elements on the white About panel */
+.panel--about :focus-visible {
+  outline-color: var(--text-dark);
+}
+
+/* Nav links on focus */
+.nav-links li a:focus-visible {
+  opacity: 1;
+}
+
+/* Social buttons on focus */
+.social-btn:focus-visible {
+  border-color: var(--text);
+  opacity: 1;
+}
+
+/* ── RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* overflow:hidden required — horizontal scroll is handled by .scroll-container, not the viewport */
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+}
+
+ul { list-style: none; }
+a  { color: inherit; text-decoration: none; }
+img { display: block; }
+
+/* ── SITE WRAPPER — single fixed layer so blend mode works ── */
+#site-wrapper {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* ── SCROLL CONTAINER ── */
+.scroll-container {
+  position: absolute;
+  inset: 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.scroll-container::-webkit-scrollbar { display: none; }
+.scroll-container.dragging { cursor: grabbing; }
+
+/* ── NAV ── */
+#nav {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: var(--nav-h);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 40px 14px;
+  background: transparent;
+  pointer-events: none;
+}
+
+#nav a { pointer-events: all; }
+
+.nav-logo {
+  mix-blend-mode: difference;
+}
+
+.nav-logo img {
+  height: 38px;
+  width: auto;
+  display: block;
+}
+
+.nav-links {
+  display: flex;
+  gap: 56px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  mix-blend-mode: difference;
+}
+
+.nav-links li a {
+  cursor: pointer;
+}
+.nav-links li a:hover { opacity: 0.8; }
+
+/* ── SOCIAL ICONS ── */
+.social-icons {
+  position: absolute;
+  bottom: 32px;
+  right: 40px;
+  display: flex;
+  gap: 8px;
+  pointer-events: none;
+  z-index: 10;
+  mix-blend-mode: difference;
+}
+.social-icons a { pointer-events: all; }
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border: 1.2px solid rgba(254,255,254,0.7);
+  border-radius: 50%;
+  color: var(--text);
+  transition: border-color 0.2s, opacity 0.2s;
+}
+.social-btn:hover { border-color: var(--text); opacity: 0.8; }
+.social-btn svg { width: 22px; height: 22px; }
+
+/* ── SPIN CIRCLE ── */
+.spin-circle {
+  position: absolute;
+  bottom: 28px;
+  left: 40px;
+  width: 80px;
+  height: 80px;
+  z-index: 50;
+  pointer-events: none;
+  will-change: transform;
+  mix-blend-mode: difference;
+}
+
+.spin-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+/* ── CANVAS ── */
+.canvas {
+  display: flex;
+  height: 100%;
+  /* Keep in sync with the number of panels — each panel width var must match a rendered panel */
+  width: calc(var(--panel-hero) + var(--panel-menu) + var(--panel-specialty) + var(--panel-about));
+}
+
+/* ── PANELS (shared) ── */
+.panel {
+  position: relative;
+  height: 100%;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* ══════════════════════════════════
+   PANEL 1 — HERO
+══════════════════════════════════ */
+.panel--hero {
+  width: var(--panel-hero);
+  display: flex;
+  align-items: center;
+}
+
+.hero-text {
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 65vw;
+}
+
+.hero-heading {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(44px, 5vw, 68px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  white-space: pre-line;
+}
+
+.hero-whats-new {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 400px;
+}
+
+.sub-head {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--text);
+}
+
+.body-text {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* ══════════════════════════════════
+   PANEL 2 — MENU
+══════════════════════════════════ */
+.panel--menu {
+  width: var(--panel-menu);
+  display: flex;
+  align-items: flex-start;
+  padding-top: 60px;
+  overflow: visible;
+}
+
+/* Large display word "Coffee" */
+.menu-large-word {
+  position: absolute;
+  top: 350px;
+  left: 860px;
+  transform: none;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(120px, 16vw, 220px);
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+  color: var(--text);
+  pointer-events: none;
+  white-space: nowrap;
+  opacity: 0.9;
+  z-index: 3;
+}
+
+/* Menu columns layout */
+.menu-col {
+  position: absolute;
+  top: calc(var(--nav-h) + 8px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: var(--text);
+  z-index: 2;
+}
+
+.menu-col--coffee { left: 40px;   width: 300px; }
+.menu-col--tea    { left: 380px;  width: 320px; }
+.menu-col--jpn    { left: 730px;  width: 320px; }
+.menu-col--drinks { left: 380px; top: 585px; width: 320px; }
+
+.menu-heading {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--text);
+}
+
+.menu-list {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--text);
+}
+.menu-list li::before { content: "  — "; }
+
+.menu-subgroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.menu-label-bold {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--text);
+}
+
+/* Coffee pour image */
+.menu-coffee-image {
+  position: absolute;
+  top: 410px;
+  bottom: 0;
+  left: 732px;
+  width: 380px;
+  overflow: visible;
+}
+.menu-coffee-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* ══════════════════════════════════
+   PANEL 3 — SPECIALTY & DRINKS
+══════════════════════════════════ */
+.panel--specialty {
+  width: var(--panel-specialty);
+  position: relative;
+}
+
+/* Coffee of the Day card */
+.specialty-card {
+  position: absolute;
+  left: 40px;
+  bottom: 60px;
+  top: auto;
+  transform: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 200px;
+  color: var(--text);
+}
+
+.specialty-card__img {
+  width: 160px;
+  height: 210px;
+  object-fit: contain;
+  object-position: bottom center;
+}
+
+/* Bensa block */
+.bensa-block {
+  position: absolute;
+  left: 270px;
+  top: auto;
+  bottom: 0;
+  transform: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--text);
+  width: 420px;
+}
+
+.bensa-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bensa-img {
+  width: 100%;
+  height: 72vh;
+  object-fit: contain;
+  object-position: bottom center;
+}
+
+/* drinks-col: used for iced drinks + lemonades columns; named differently from .menu-col
+   because these columns are positioned at different vertical offsets within the menu panel */
+/* Iced drinks + Lemonades */
+.drinks-col {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: var(--text);
+}
+
+.drinks-col--lemonades { left: 1080px; top: calc(var(--nav-h) + 8px); transform: none; width: 320px; }
+.drinks-col--iced      { left: 40px; top: 589px; transform: none; width: 300px; }
+
+/* Café images */
+.cafe-image {
+  position: absolute;
+  overflow: hidden;
+}
+
+.cafe-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cafe-image--main {
+  right: 0;
+  top: 0;
+  width: 65%;
+  height: 100%;
+}
+
+.cafe-image--secondary {
+  left: 280px;
+  bottom: 0;
+  width: 180px;
+  height: 46%;
+}
+
+/* ══════════════════════════════════
+   PANEL 4 — ABOUT US
+══════════════════════════════════ */
+.panel--about {
+  width: var(--panel-about);
+  background: #fefffe;
+  position: relative;
+}
+
+/* Ensure all about panel content sits above background */
+.about-rotated-wrap { z-index: 2; }
+.about-images       { z-index: 0; }
+.about-body         { z-index: 2; }
+
+/* Rotated "About us" text on left edge */
+.about-rotated-wrap {
+  position: absolute;
+  left: 8px;
+  top: 70px;
+  width: 120px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.about-rotated-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(100px, 12vw, 160px);
+  letter-spacing: -0.05em;
+  line-height: 0.92;
+  color: var(--text-dark);
+  white-space: nowrap;
+  transform: rotate(-90deg);
+  transform-origin: center center;
+}
+
+/* Images — full-panel container, each image positioned absolutely within */
+.about-images {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.about-img { object-fit: cover; }
+
+/* Cafe interior — right column, same position as before */
+.about-img--1 {
+  position: absolute;
+  left: 600px;
+  top: 290px;
+  width: auto;
+  height: calc(100% - 200px);
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* Cafe detail — to the right of cafe interior */
+.about-img--2 {
+  display: block;
+  position: absolute;
+  left: 1900px;
+  top: 100px;
+  width: auto;
+  height: calc(100% - 200px);
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* Book-Fan — landscape, full image visible */
+.about-img--3 {
+  display: block;
+  position: absolute;
+  left: 160px;
+  top: 190px;
+  width: 560px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Body text — below Book-Fan */
+.about-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: absolute;
+  left: 160px;
+  top: calc(190px + 300px + 20px);
+  width: 400px;
+  z-index: 2;
+}
+.about-body .sub-head  { color: var(--text-dark); }
+.about-body .body-text { color: var(--text-dark); font-size: 13px; line-height: 2.4; white-space: pre-line; }
+
+/* ══════════════════════════════════
+   MOBILE LAYOUT (<768px)
+   Panels stack vertically. Horizontal scroll disabled.
+══════════════════════════════════ */
+@media (max-width: 767px) {
+
+  #site-wrapper {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  /* Disable horizontal scroll — stack panels vertically */
+  .scroll-container {
+    overflow-x: hidden;
+    overflow-y: visible;
+    cursor: default;
+    display: block;
+    height: auto;
+    position: relative;
+  }
+
+  .canvas {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+  }
+
+  /* All panels: full width, auto height, no overflow clip */
+  .panel {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 100dvh;
+    overflow: visible;
+    position: relative;
+  }
+
+  /* ── HERO PANEL ── */
+  .hero-text {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    padding: 100px 24px 60px;
+    max-width: 100%;
+  }
+
+  .hero-heading {
+    font-size: clamp(36px, 9vw, 56px);
+  }
+
+  /* ── MENU PANEL ── */
+  .panel--menu {
+    padding: 80px 24px 60px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  /* Reset all absolutely-positioned menu columns */
+  .menu-col,
+  .drinks-col {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 100% !important;
+  }
+
+  /* Hide the large decorative background word on mobile */
+  .menu-large-word {
+    display: none;
+  }
+
+  /* Hide the coffee pour image on mobile */
+  .menu-coffee-image {
+    display: none;
+  }
+
+  /* ── SPECIALTY PANEL ── */
+  .panel--specialty {
+    padding: 60px 24px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: flex-start;
+    min-height: auto;
+  }
+
+  .specialty-card {
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 100%;
+  }
+
+  .bensa-block {
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 100%;
+  }
+
+  .bensa-img {
+    height: auto !important;
+    max-height: 60vw;
+    width: 100% !important;
+  }
+
+  /* ── ABOUT PANEL ── */
+  .panel--about {
+    padding: 60px 24px 80px;
+    min-height: auto;
+  }
+
+  .about-rotated-wrap {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    margin-bottom: 32px;
+  }
+
+  .about-rotated-text {
+    font-size: clamp(48px, 14vw, 80px);
+    transform: none;
+    white-space: normal;
+  }
+
+  .about-images {
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .about-img {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 70vw;
+    object-fit: cover;
+  }
+
+  .about-body {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: 100% !important;
+  }
+
+  /* ── NAV ── */
+  #nav {
+    padding: 0 24px 14px;
+  }
+
+  /* ── SOCIAL ICONS ── */
+  .social-icons {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+  }
+
+  /* ── SPIN CIRCLE ── */
+  .spin-circle {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+  }
+
+}
+
+/* ══════════════════════════════════
+   BOOK A TABLE — /book routes
+══════════════════════════════════ */
+.book-page {
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  font-family: var(--font-body);
+}
+
+.book-back-link {
+  align-self: flex-start;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text);
+  opacity: 0.7;
+  margin-bottom: 48px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.book-back-link:hover { opacity: 1; }
+
+.book-heading {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 48px;
+  text-align: center;
+}
+.book-heading:focus { outline: none; }
+
+.book-form {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.book-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.book-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.book-input,
+.book-select,
+.book-textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(254, 255, 254, 0.3);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  padding: 8px 0;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.book-input:hover,
+.book-select:hover,
+.book-textarea:hover {
+  border-bottom-color: rgba(254, 255, 254, 1);
+}
+.book-input:focus,
+.book-select:focus,
+.book-textarea:focus {
+  border-bottom-color: var(--text);
+}
+.book-input::placeholder,
+.book-textarea::placeholder { opacity: 0.4; }
+
+/* Date/time inputs — colour-correct on dark background */
+.book-input[type="date"],
+.book-input[type="number"] {
+  color-scheme: dark;
+}
+
+.book-select option { background: var(--bg); color: var(--text); }
+
+.book-time-range {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.book-time-dash {
+  color: rgba(254,255,254,0.4);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+
+.book-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.book-error {
+  font-size: 12px;
+  color: #ff6b6b;
+  margin-top: -4px;
+}
+
+.book-submit {
+  margin-top: 12px;
+  padding: 16px 32px;
+  background: var(--text);
+  color: var(--text-dark);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  align-self: flex-start;
+}
+.book-submit:hover { opacity: 0.85; }
+.book-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Unavailable page */
+.book-unavailable {
+  max-width: 520px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.book-unavailable-sub {
+  font-size: 15px;
+  line-height: 1.7;
+  opacity: 0.8;
+  margin-bottom: 40px;
+}
+.book-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.book-contact-link {
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+.book-contact-link:hover { opacity: 1; }
+.book-note {
+  font-size: 13px;
+  opacity: 0.5;
+  margin-bottom: 48px;
+}
+
+/* ── SELECTION ── */
+::selection { background: rgba(254,255,254,0.2); }
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  .spin-circle { transition: none; }
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
