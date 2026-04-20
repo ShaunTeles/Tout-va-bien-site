@@ -887,6 +887,17 @@ img { display: block; }
 
 .book-select option { background: var(--bg); color: var(--text); }
 
+.book-time-range {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.book-time-dash {
+  color: rgba(254,255,254,0.4);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
 
 .book-textarea {
   resize: vertical;

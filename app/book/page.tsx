@@ -6,24 +6,60 @@ import Link from 'next/link'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { LocalizationProvider } from '@mui/x-date-pickers-pro'
-import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs'
-import { TimeRangePicker } from '@mui/x-date-pickers-pro/TimeRangePicker'
-import { MultiInputTimeRangeField } from '@mui/x-date-pickers-pro/MultiInputTimeRangeField'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { TimePicker } from '@mui/x-date-pickers/TimePicker'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import type { Dayjs } from 'dayjs'
 
 const schema = z.object({
   name: z.string().min(2, 'Please enter your name'),
   date: z.string().min(1, 'Please choose a date'),
-  timeRange: z.tuple([z.any(), z.any()]).refine(
-    ([start, end]) => start && end,
-    'Please choose a start and end time'
-  ),
+  arrival: z.any().refine((v) => v !== null && v !== undefined, 'Please choose an arrival time'),
+  departure: z.any().refine((v) => v !== null && v !== undefined, 'Please choose a departure time'),
   partySize: z.coerce.number().min(1, 'At least 1 guest').max(20, 'Maximum 20 guests'),
   notes: z.string().optional(),
 })
 
 type BookingForm = z.output<typeof schema>
+
+const timePickerSx = {
+  width: '100%',
+  '& .MuiOutlinedInput-root': {
+    color: '#fefffe',
+    borderRadius: 0,
+    fontFamily: 'var(--font-body)',
+    fontSize: '15px',
+    backgroundColor: 'transparent',
+    '& fieldset': { borderColor: 'rgba(254,255,254,0.3)' },
+    '&:hover fieldset': { borderColor: 'rgba(254,255,254,0.6)' },
+    '&.Mui-focused fieldset': { borderColor: '#fefffe', borderWidth: '1px' },
+  },
+  '& .MuiInputLabel-root': {
+    color: 'rgba(254,255,254,0.5)',
+    fontFamily: 'var(--font-body)',
+    fontSize: '12px',
+    fontWeight: 600,
+    letterSpacing: '0.08em',
+    textTransform: 'uppercase',
+  },
+  '& .MuiInputLabel-root.Mui-focused': { color: '#fefffe' },
+  '& .MuiSvgIcon-root': { color: 'rgba(254,255,254,0.5)' },
+  '& .MuiInputBase-input': { color: '#fefffe' },
+}
+
+const popperSx = {
+  '& .MuiPaper-root': {
+    background: '#1e1e1e',
+    color: '#fefffe',
+    borderRadius: 0,
+  },
+  '& .MuiClockNumber-root': { color: '#fefffe' },
+  '& .MuiPickersArrowSwitcher-button': { color: 'rgba(254,255,254,0.6)' },
+  '& .MuiButtonBase-root': { color: '#fefffe' },
+  '& .MuiTypography-root': { color: '#fefffe' },
+  '& .MuiPickersToolbar-root': { background: '#1e1e1e' },
+  '& .MuiDialogActions-root .MuiButton-root': { color: '#fefffe' },
+}
 
 export default function BookPage() {
   const router = useRouter()
@@ -34,9 +70,9 @@ export default function BookPage() {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<BookingForm, unknown, BookingForm>({
+  } = useForm<BookingForm>({
     resolver: zodResolver(schema),
-    defaultValues: { timeRange: [null, null] },
+    defaultValues: { arrival: null, departure: null },
   })
 
   const onSubmit = async () => {
@@ -69,7 +105,7 @@ export default function BookPage() {
               {...register('name')}
             />
             {errors.name && (
-              <span className="book-error" role="alert">{errors.name.message}</span>
+              <span className="book-error" role="alert">{errors.name.message as string}</span>
             )}
           </div>
 
@@ -84,63 +120,44 @@ export default function BookPage() {
               {...register('date')}
             />
             {errors.date && (
-              <span className="book-error" role="alert">{errors.date.message}</span>
+              <span className="book-error" role="alert">{errors.date.message as string}</span>
             )}
           </div>
 
-          {/* Time range */}
+          {/* Time range — two free TimePickers */}
           <div className="book-field">
             <span className="book-label">Time</span>
-            <Controller
-              name="timeRange"
-              control={control}
-              render={({ field }) => (
-                <TimeRangePicker
-                  value={field.value as [Dayjs | null, Dayjs | null]}
-                  onChange={field.onChange}
-                  slots={{ field: MultiInputTimeRangeField }}
-                  slotProps={{
-                    textField: ({ position }) => ({
-                      size: 'small',
-                      label: position === 'start' ? 'Arrival' : 'Departure',
-                      variant: 'outlined',
-                      sx: {
-                        '& .MuiOutlinedInput-root': {
-                          color: 'var(--text)',
-                          borderRadius: 0,
-                          fontFamily: 'var(--font-body)',
-                          fontSize: '15px',
-                          '& fieldset': { borderColor: 'rgba(254,255,254,0.3)' },
-                          '&:hover fieldset': { borderColor: 'rgba(254,255,254,0.6)' },
-                          '&.Mui-focused fieldset': { borderColor: 'var(--text)', borderWidth: '1px' },
-                        },
-                        '& .MuiInputLabel-root': {
-                          color: 'rgba(254,255,254,0.5)',
-                          fontFamily: 'var(--font-body)',
-                          fontSize: '12px',
-                          fontWeight: 600,
-                          letterSpacing: '0.08em',
-                          textTransform: 'uppercase',
-                        },
-                        '& .MuiInputLabel-root.Mui-focused': { color: 'var(--text)' },
-                        '& .MuiSvgIcon-root': { color: 'rgba(254,255,254,0.4)' },
-                      },
-                    }),
-                    desktopPaper: {
-                      sx: {
-                        background: '#1e1e1e',
-                        color: 'var(--text)',
-                        borderRadius: 0,
-                        '& .MuiClockNumber-root': { color: 'var(--text)' },
-                        '& .MuiPickersArrowSwitcher-button': { color: 'rgba(254,255,254,0.6)' },
-                      },
-                    },
-                  }}
-                />
-              )}
-            />
-            {errors.timeRange && (
-              <span className="book-error" role="alert">Please choose a start and end time</span>
+            <div className="book-time-range">
+              <Controller
+                name="arrival"
+                control={control}
+                render={({ field }) => (
+                  <TimePicker
+                    label="Arrival"
+                    value={field.value as Dayjs | null}
+                    onChange={field.onChange}
+                    sx={timePickerSx}
+                    slotProps={{ popper: { sx: popperSx } }}
+                  />
+                )}
+              />
+              <span className="book-time-dash">–</span>
+              <Controller
+                name="departure"
+                control={control}
+                render={({ field }) => (
+                  <TimePicker
+                    label="Departure"
+                    value={field.value as Dayjs | null}
+                    onChange={field.onChange}
+                    sx={timePickerSx}
+                    slotProps={{ popper: { sx: popperSx } }}
+                  />
+                )}
+              />
+            </div>
+            {(errors.arrival || errors.departure) && (
+              <span className="book-error" role="alert">Please choose arrival and departure times</span>
             )}
           </div>
 
@@ -157,7 +174,7 @@ export default function BookPage() {
               {...register('partySize')}
             />
             {errors.partySize && (
-              <span className="book-error" role="alert">{errors.partySize.message}</span>
+              <span className="book-error" role="alert">{errors.partySize.message as string}</span>
             )}
           </div>
 
@@ -174,11 +191,7 @@ export default function BookPage() {
             />
           </div>
 
-          <button
-            type="submit"
-            className="book-submit"
-            disabled={pending}
-          >
+          <button type="submit" className="book-submit" disabled={pending}>
             {pending ? 'Checking…' : 'Check availability'}
           </button>
         </form>
