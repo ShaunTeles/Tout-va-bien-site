@@ -83,8 +83,8 @@ export default function BookPage() {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<BookingForm>({
-    resolver: zodResolver(schema),
+  } = useForm<BookingForm, unknown, BookingForm>({
+    resolver: zodResolver(schema) as any,
     defaultValues: { arrival: null, departure: null },
   })
 
