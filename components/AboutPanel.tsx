@@ -16,9 +16,9 @@ export function AboutPanel({ about }: AboutPanelProps) {
 
       {/* Images grid */}
       <div className="about-images">
-        <Image className="about-img about-img--1" src={about.image1Src} alt={about.image1Alt} width={800} height={1200} style={{ objectFit: 'contain', objectPosition: 'left center' }} />
-        <Image className="about-img about-img--2" src={about.image2Src} alt={about.image2Alt} width={800} height={1200} style={{ objectFit: 'contain', objectPosition: 'left center' }} />
-        <Image className="about-img about-img--3" src={about.image3Src} alt={about.image3Alt} width={560} height={400} style={{ objectFit: 'contain' }} />
+        <Image className="about-img about-img--1" src={about.image1Src} alt={about.image1Alt} width={800} height={1200} />
+        <Image className="about-img about-img--2" src={about.image2Src} alt={about.image2Alt} width={800} height={1200} />
+        <Image className="about-img about-img--3" src={about.image3Src} alt={about.image3Alt} width={560} height={400} />
       </div>
 
       {/* Body text */}

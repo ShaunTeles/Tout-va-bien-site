@@ -65,10 +65,6 @@ export interface CafeContent {
     lemonadesHeading: string;
     lemonades: string[];
 
-    cafeImageSrc: string;
-    cafeImageAlt: string;
-    cafeImage2Src: string;
-    cafeImage2Alt: string;
   };
 
   about: {
@@ -208,10 +204,6 @@ const content: CafeContent = {
       "Korejská Švestková Limonáda (Korean plum lemonade)",
     ],
 
-    cafeImageSrc:  "/images/1-Cafe-interior.webp",
-    cafeImageAlt:  "Café interior",
-    cafeImage2Src: "/images/cafe-detail.webp",
-    cafeImage2Alt: "Café detail",
   },
 
   /* ── ABOUT PANEL ── */

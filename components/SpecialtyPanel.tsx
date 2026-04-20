@@ -32,8 +32,9 @@ export function SpecialtyPanel({ specialty }: SpecialtyPanelProps) {
           className="bensa-img"
           src={specialty.bensaImageSrc}
           alt={specialty.bensaName}
-          width={600}
-          height={900}
+          width={0}
+          height={0}
+          sizes="(max-width: 768px) 100vw, 420px"
           style={{ width: '100%', height: '72vh', objectFit: 'contain', objectPosition: 'bottom center' }}
         />
       </div>
