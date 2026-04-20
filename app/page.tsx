@@ -2,13 +2,20 @@ import { HorizontalCanvas } from '@/components/HorizontalCanvas'
 import { SpinCircle } from '@/components/SpinCircle'
 import Nav from '@/components/Nav'
 import SocialIcons from '@/components/SocialIcons'
+import { HeroPanel } from '@/components/HeroPanel'
+import { MenuPanel } from '@/components/MenuPanel'
+import { SpecialtyPanel } from '@/components/SpecialtyPanel'
+import { AboutPanel } from '@/components/AboutPanel'
 import content from '@/lib/content'
 
 export default function Home() {
   return (
     <div id="site-wrapper">
       <HorizontalCanvas>
-        {/* Panels will be added in T4 */}
+        <HeroPanel hero={content.hero} />
+        <MenuPanel menu={content.menu} specialty={content.specialty} />
+        <SpecialtyPanel specialty={content.specialty} />
+        <AboutPanel about={content.about} />
       </HorizontalCanvas>
       <Nav
         logoSrc={content.nav.logoSrc}
