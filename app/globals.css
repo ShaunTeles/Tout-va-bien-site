@@ -581,11 +581,6 @@ img { display: block; }
 ══════════════════════════════════ */
 @media (max-width: 767px) {
 
-  /* Allow vertical scrolling on mobile */
-  html, body {
-    overflow: hidden; /* keep — site-wrapper handles it */
-  }
-
   #site-wrapper {
     overflow-y: auto;
     overflow-x: hidden;
