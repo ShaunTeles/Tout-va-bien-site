@@ -31,7 +31,7 @@ const timePickerSx = {
     fontSize: '15px',
     backgroundColor: 'transparent',
     '& fieldset': { borderColor: 'rgba(254,255,254,0.3)' },
-    '&:hover fieldset': { borderColor: 'rgba(254,255,254,0.6)' },
+    '&:hover fieldset': { borderColor: 'rgba(254,255,254,0.8) !important' },
     '&.Mui-focused fieldset': { borderColor: '#fefffe', borderWidth: '1px' },
   },
   '& .MuiInputLabel-root': {
