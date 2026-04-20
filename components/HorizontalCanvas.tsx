@@ -2,15 +2,20 @@
 
 import { useRef, useCallback, createContext, useContext, useEffect } from 'react'
 
-/* ── Scroll context — lets Nav call scrollToPanel without prop-drilling ── */
+/* ── Scroll context — lets Nav/SpinCircle access scroll state without prop-drilling ── */
 interface ScrollContextValue {
   scrollToPanel: (id: string) => void
+  containerRef: React.RefObject<HTMLDivElement | null>
 }
 
 export const ScrollContext = createContext<ScrollContextValue | null>(null)
 
-export function useScrollToPanel(): ScrollContextValue | null {
-  return useContext(ScrollContext)
+export function useScrollContext(): ScrollContextValue | null {
+  const ctx = useContext(ScrollContext)
+  if (process.env.NODE_ENV === 'development' && !ctx) {
+    console.warn('useScrollContext called outside HorizontalCanvas provider')
+  }
+  return ctx
 }
 
 /* ── HorizontalCanvas ── */
@@ -75,8 +80,16 @@ export function HorizontalCanvas({ children }: HorizontalCanvasProps) {
       }
     }
 
+    const handleMouseLeave = () => {
+      if (isDragging) {
+        isDragging = false
+        container.classList.remove('dragging')
+      }
+    }
+
     container.addEventListener('wheel', handleWheel, { passive: false })
     container.addEventListener('mousedown', handleMouseDown)
+    container.addEventListener('mouseleave', handleMouseLeave)
     window.addEventListener('mousemove', handleMouseMove)
     window.addEventListener('mouseup', handleMouseUp)
     document.addEventListener('keydown', handleKeyDown)
@@ -84,6 +97,7 @@ export function HorizontalCanvas({ children }: HorizontalCanvasProps) {
     return () => {
       container.removeEventListener('wheel', handleWheel)
       container.removeEventListener('mousedown', handleMouseDown)
+      container.removeEventListener('mouseleave', handleMouseLeave)
       window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('mouseup', handleMouseUp)
       document.removeEventListener('keydown', handleKeyDown)
@@ -91,7 +105,7 @@ export function HorizontalCanvas({ children }: HorizontalCanvasProps) {
   }, [])
 
   return (
-    <ScrollContext.Provider value={{ scrollToPanel }}>
+    <ScrollContext.Provider value={{ scrollToPanel, containerRef }}>
       <main
         className="scroll-container"
         id="scrollContainer"

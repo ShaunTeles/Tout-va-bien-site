@@ -19,7 +19,7 @@ export default function Home() {
         instagramUrl={content.nav.instagram}
         facebookUrl={content.nav.facebook}
       />
-      <SpinCircle imageSrc={content.spinCircle.imageSrc} />
+      <SpinCircle imageSrc={content.spinCircle.imageSrc} imageAlt={content.spinCircle.imageAlt} />
     </div>
   )
 }

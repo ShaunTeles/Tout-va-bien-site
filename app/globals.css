@@ -219,6 +219,7 @@ img { display: block; }
 .canvas {
   display: flex;
   height: 100%;
+  /* Keep in sync with the number of panels — each panel width var must match a rendered panel */
   width: calc(var(--panel-hero) + var(--panel-menu) + var(--panel-specialty) + var(--panel-about));
 }
 

@@ -1,20 +1,23 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { useScrollContext } from './HorizontalCanvas'
 
 interface SpinCircleProps {
   imageSrc: string
+  imageAlt?: string
 }
 
-export function SpinCircle({ imageSrc }: SpinCircleProps) {
+export function SpinCircle({ imageSrc, imageAlt }: SpinCircleProps) {
   const circleRef = useRef<HTMLDivElement>(null)
+  const ctx = useScrollContext()
 
   useEffect(() => {
     /* Respect prefers-reduced-motion */
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReduced) return
 
-    const container = document.getElementById('scrollContainer')
+    const container = ctx?.containerRef?.current
     if (!container) return
 
     let rotation = 0
@@ -35,12 +38,12 @@ export function SpinCircle({ imageSrc }: SpinCircleProps) {
     return () => {
       container.removeEventListener('scroll', handleScroll)
     }
-  }, [])
+  }, [ctx])
 
   return (
     <div className="spin-circle" id="spinCircle" aria-hidden="true" ref={circleRef}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={imageSrc} alt="" />
+      <img src={imageSrc} alt={imageAlt ?? ""} />
     </div>
   )
 }

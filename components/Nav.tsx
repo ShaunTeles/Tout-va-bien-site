@@ -1,6 +1,6 @@
 'use client'
 
-import { useScrollToPanel } from './HorizontalCanvas'
+import { useScrollContext } from './HorizontalCanvas'
 import type { NavLink } from '@/lib/content'
 
 interface NavProps {
@@ -10,7 +10,7 @@ interface NavProps {
 }
 
 export default function Nav({ logoSrc, logoAlt, links }: NavProps) {
-  const ctx = useScrollToPanel()
+  const ctx = useScrollContext()
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
@@ -25,7 +25,7 @@ export default function Nav({ logoSrc, logoAlt, links }: NavProps) {
   return (
     <nav id="nav">
       <a
-        href="#"
+        href="#panel-hero"
         className="nav-logo"
         id="navLogo"
         aria-label="Tout va bien home"
@@ -38,7 +38,7 @@ export default function Nav({ logoSrc, logoAlt, links }: NavProps) {
         {links.map((link) => (
           <li key={link.target}>
             <a
-              href="#"
+              href={"#" + link.target}
               data-target={link.target}
               onClick={(e) => handleLinkClick(e, link.target)}
             >
