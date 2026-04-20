@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { useScrollContext } from './HorizontalCanvas'
 import type { NavLink } from '@/lib/content'
 
 interface NavProps {
@@ -11,17 +10,23 @@ interface NavProps {
   links: NavLink[]
 }
 
-export default function Nav({ logoSrc, logoAlt, links }: NavProps) {
-  const ctx = useScrollContext()
+function scrollToPanel(id: string) {
+  const container = document.getElementById('scrollContainer')
+  const target = document.getElementById(id)
+  if (!container || !target) return
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  container.scrollTo({ left: target.offsetLeft, behavior: prefersReduced ? 'auto' : 'smooth' })
+}
 
+export default function Nav({ logoSrc, logoAlt, links }: NavProps) {
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
-    ctx?.scrollToPanel('panel-hero')
+    scrollToPanel('panel-hero')
   }
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
     e.preventDefault()
-    ctx?.scrollToPanel(target)
+    scrollToPanel(target)
   }
 
   return (

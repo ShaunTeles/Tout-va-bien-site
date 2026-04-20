@@ -336,13 +336,14 @@ img { display: block; }
   display: flex;
   align-items: flex-start;
   padding-top: 60px;
+  overflow: visible;
 }
 
 /* Large display word "Coffee" */
 .menu-large-word {
   position: absolute;
   top: 40px;
-  left: 144px;
+  left: 40px;
   transform: none;
   font-family: var(--font-display);
   font-style: italic;

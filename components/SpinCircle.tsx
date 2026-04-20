@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
-import { useScrollContext } from './HorizontalCanvas'
 
 interface SpinCircleProps {
   imageSrc: string
@@ -11,7 +10,6 @@ interface SpinCircleProps {
 
 export function SpinCircle({ imageSrc, imageAlt }: SpinCircleProps) {
   const circleRef = useRef<HTMLDivElement>(null)
-  const ctx = useScrollContext()
 
   useEffect(() => {
     /* Respect prefers-reduced-motion */
@@ -25,15 +23,15 @@ export function SpinCircle({ imageSrc, imageAlt }: SpinCircleProps) {
     function attach() {
       const isMobile = mq.matches
       const scrollTarget = isMobile
-        ? (document.getElementById('site-wrapper') ?? ctx?.containerRef?.current)
-        : ctx?.containerRef?.current
+        ? document.getElementById('site-wrapper')
+        : document.getElementById('scrollContainer')
 
       if (!scrollTarget) return () => {}
 
       const handleScroll = () => {
         const current = isMobile
-          ? (document.getElementById('site-wrapper')?.scrollTop ?? 0)
-          : (ctx?.containerRef?.current?.scrollLeft ?? 0)
+          ? (scrollTarget as HTMLElement).scrollTop
+          : (scrollTarget as HTMLElement).scrollLeft
         const delta = current - lastScroll
         rotation += delta * 0.15
         lastScroll = current
@@ -56,7 +54,7 @@ export function SpinCircle({ imageSrc, imageAlt }: SpinCircleProps) {
       cleanup()
       mq.removeEventListener('change', handleMqChange)
     }
-  }, [ctx])
+  }, [])
 
   return (
     <div className="spin-circle" id="spinCircle" aria-hidden="true" ref={circleRef}>

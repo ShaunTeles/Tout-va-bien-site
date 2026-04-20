@@ -91,8 +91,10 @@ export function MenuPanel({ menu, specialty }: MenuPanelProps) {
       {/* Coffee pour image — bottom of panel */}
       <div className="menu-coffee-image">
         <Image src={menu.coffeeImageSrc} alt={menu.coffeeImageAlt} fill style={{ objectFit: 'cover', objectPosition: 'center top' }} sizes="380px" />
-        <div className="menu-large-word">{menu.largeCoffeeWord}</div>
       </div>
+
+      {/* Large decorative word — direct panel child so it isn't clipped by the image container */}
+      <div className="menu-large-word" aria-hidden="true">{menu.largeCoffeeWord}</div>
 
     </section>
   )
