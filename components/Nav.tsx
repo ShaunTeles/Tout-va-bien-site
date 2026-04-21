@@ -11,11 +11,19 @@ interface NavProps {
 }
 
 function scrollToPanel(id: string) {
-  const container = document.getElementById('scrollContainer')
   const target = document.getElementById(id)
-  if (!container || !target) return
+  if (!target) return
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  container.scrollTo({ left: target.offsetLeft, behavior: prefersReduced ? 'auto' : 'smooth' })
+  const isMobile = window.matchMedia('(max-width: 767px)').matches
+  if (isMobile) {
+    const wrapper = document.getElementById('site-wrapper')
+    if (!wrapper) return
+    wrapper.scrollTo({ top: target.offsetTop, behavior: prefersReduced ? 'auto' : 'smooth' })
+  } else {
+    const container = document.getElementById('scrollContainer')
+    if (!container) return
+    container.scrollTo({ left: target.offsetLeft, behavior: prefersReduced ? 'auto' : 'smooth' })
+  }
 }
 
 export default function Nav({ logoSrc, logoAlt, links }: NavProps) {

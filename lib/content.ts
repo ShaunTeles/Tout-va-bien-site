@@ -223,7 +223,7 @@ const content: CafeContent = {
 
   /* ── SPIN CIRCLE ── */
   spinCircle: {
-    imageSrc: "/images/spin-circle.png",
+    imageSrc: "/images/spin-circle.svg",
     imageAlt: "Tout va bien rotating logo",
   },
 };

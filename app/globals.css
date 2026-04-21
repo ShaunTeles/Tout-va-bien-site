@@ -778,7 +778,26 @@ img { display: block; }
 
   /* ── NAV ── */
   #nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
     padding: 0 24px 14px;
+    background: var(--bg);
+  }
+
+  .nav-logo img {
+    height: 26px;
+  }
+
+  .nav-links {
+    gap: 16px;
+    font-size: 12px;
+  }
+
+  .nav-links li a {
+    white-space: nowrap;
   }
 
   /* ── SOCIAL ICONS ── */

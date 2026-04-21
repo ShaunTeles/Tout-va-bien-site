@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 
 interface SpinCircleProps {
@@ -58,7 +57,8 @@ export function SpinCircle({ imageSrc, imageAlt }: SpinCircleProps) {
 
   return (
     <div className="spin-circle" id="spinCircle" aria-hidden="true" ref={circleRef}>
-      <Image src={imageSrc} alt={imageAlt ?? ""} width={80} height={80} />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={imageSrc} alt={imageAlt ?? ""} width={80} height={80} />
     </div>
   )
 }
