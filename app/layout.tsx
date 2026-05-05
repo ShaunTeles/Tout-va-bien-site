@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -59,6 +60,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-RRC08YYYH2"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive" dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-RRC08YYYH2');
+          `
+        }} />
         <a href="#scrollContainer" className="skip-link">Skip to content</a>
         <script
           type="application/ld+json"
