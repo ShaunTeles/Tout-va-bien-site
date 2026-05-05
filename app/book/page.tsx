@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { trackEvent } from '@/lib/analytics'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -99,7 +100,7 @@ export default function BookPage() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <main className="book-page">
-        <Link href="/#panel-hero" className="book-back-link">
+        <Link href="/#panel-hero" className="book-back-link" onClick={() => trackEvent('click_book_back')}>
           ← Back to site
         </Link>
 
@@ -210,7 +211,7 @@ export default function BookPage() {
             />
           </div>
 
-          <button type="submit" className="book-submit" disabled={pending}>
+          <button type="submit" className="book-submit" disabled={pending} onClick={() => trackEvent('click_book_submit')}>
             {pending ? 'Checking…' : 'Check availability'}
           </button>
         </form>

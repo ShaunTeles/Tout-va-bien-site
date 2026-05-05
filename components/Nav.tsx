@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { NavLink } from '@/lib/content'
+import { trackEvent } from '@/lib/analytics'
 
 interface NavProps {
   logoSrc: string
@@ -29,11 +30,13 @@ function scrollToPanel(id: string) {
 export default function Nav({ logoSrc, logoAlt, links }: NavProps) {
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
+    trackEvent('click_nav_logo')
     scrollToPanel('panel-hero')
   }
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
     e.preventDefault()
+    trackEvent('click_nav_section', { section: target })
     scrollToPanel(target)
   }
 
@@ -61,7 +64,7 @@ export default function Nav({ logoSrc, logoAlt, links }: NavProps) {
           </li>
         ))}
         <li>
-          <Link href="/book">Book</Link>
+          <Link href="/book" onClick={() => trackEvent('click_nav_book')}>Book</Link>
         </li>
       </ul>
     </nav>
