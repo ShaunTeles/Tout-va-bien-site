@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { trackEvent } from '@/lib/analytics'
 
 interface SocialIconsProps {
@@ -45,6 +46,9 @@ export default function SocialIcons({ instagramUrl, facebookUrl }: SocialIconsPr
       >
         Cookie settings
       </button>
+      <Link href="/privacy" className="cookie-settings-btn">
+        Privacy
+      </Link>
     </div>
   )
 }

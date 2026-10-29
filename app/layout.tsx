@@ -54,7 +54,7 @@ const jsonLd = {
 
 const cookieConsentConfig = `window.cookieConsentConfig = ${JSON.stringify({
   ga4: 'G-RRC08YYYH2',
-  // privacyUrl: '/privacy', // add once a privacy page exists
+  privacyUrl: '/privacy',
   text: {
     title: 'A small note on cookies',
     body: 'We use analytics cookies to see how people find the café online. They are only set if you accept.',
