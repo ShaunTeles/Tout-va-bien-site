@@ -1,5 +1,5 @@
 /*!
- * cookie-consent.js — one small, dependency-free consent banner for Shaun's sites.
+ * cookie-consent.js — one small, dependency-free cookie consent banner.
  *
  * Nothing that sets cookies (Google Analytics, Microsoft Clarity, PostHog with
  * storage) loads until the visitor clicks Accept. Reject is one click and looks
