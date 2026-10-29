@@ -52,6 +52,29 @@ const jsonLd = {
   ],
 }
 
+const cookieConsentConfig = `window.cookieConsentConfig = ${JSON.stringify({
+  ga4: 'G-RRC08YYYH2',
+  // privacyUrl: '/privacy', // add once a privacy page exists
+  text: {
+    title: 'A small note on cookies',
+    body: 'We use analytics cookies to see how people find the café online. They are only set if you accept.',
+    accept: 'Accept',
+    reject: 'No thanks',
+    privacy: 'Privacy policy',
+  },
+  theme: {
+    bg: '#fefffe',
+    text: '#2b2b2b',
+    muted: '#5b5b58',
+    accent: '#2b2b2b',
+    accentText: '#fefffe',
+    border: '#fefffe',
+    radius: '4px',
+    buttonRadius: '2px',
+    font: 'var(--font-body)',
+  },
+})}`
+
 export default function RootLayout({
   children,
 }: {
@@ -60,18 +83,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-RRC08YYYH2"
-          strategy="afterInteractive"
-        />
-        <Script id="ga4-init" strategy="afterInteractive" dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-RRC08YYYH2');
-          `
-        }} />
+        {/* Cookie consent: config first, then the banner. The banner loads
+            Google Analytics (G-RRC08YYYH2) itself, only after the visitor clicks Accept. */}
+        <script dangerouslySetInnerHTML={{ __html: cookieConsentConfig }} />
+        <Script src="/cookie-consent.js" strategy="afterInteractive" />
         <a href="#scrollContainer" className="skip-link">Skip to content</a>
         <script
           type="application/ld+json"
